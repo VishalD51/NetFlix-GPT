@@ -6,15 +6,14 @@ import {
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 import { auth } from "../utils/firebase";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/userSlice";
+import { USER_AVTAR } from "../utils/constant";
 
 const Login = () => {
   const [isSIgnInForm, setiIsSIgnInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
-  const navigate = useNavigate();
 
   const email = useRef();
   const password = useRef();
@@ -43,11 +42,9 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          console.log("update profile");
           updateProfile(user, {
             displayName: name.current.value,
-            photoURL:
-              "https://cdn.hashnode.com/res/hashnode/image/upload/v1681018967298/aVj24Iiqd.png?w=400&h=400&fit=crop&crop=faces&auto=compress,format&format=webp",
+            photoURL: USER_AVTAR,
           })
             .then(() => {
               const { uid, email, displayName, photoURL } = auth.currentUser;
@@ -64,14 +61,12 @@ const Login = () => {
               // An error occurred
               // ...
             });
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
           console.log(errorCode + " - " + errorMessage);
           setErrorMessage(" Already user exist");
-          navigate("/");
         });
     } else {
       signInWithEmailAndPassword(
@@ -82,7 +77,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          navigate("/browse");
           console.log(user);
         })
         .catch((error) => {
@@ -90,7 +84,6 @@ const Login = () => {
           const errorMessage = error.message;
           console.log(errorCode + " - " + errorMessage);
           setErrorMessage("Invalid login credintails.");
-          navigate("/");
         });
     }
   };
