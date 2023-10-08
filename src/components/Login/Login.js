@@ -1,15 +1,16 @@
 import React, { useRef, useState } from "react";
-import Header from "./Header";
-import { checkValidData } from "../utils/validate";
+import Header from "../Header/Header";
+import { checkValidData } from "../../utils/validate";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../utils/firebase";
+import { auth } from "../../utils/firebase";
 import { useDispatch } from "react-redux";
-import { addUser } from "../utils/userSlice";
-import { USER_AVTAR } from "../utils/constant";
+import { addUser } from "../../redux/slice/userSlice";
+import { USER_AVTAR } from "../../utils/constant";
+import "./login.scss";
 
 const Login = () => {
   const [isSIgnInForm, setiIsSIgnInForm] = useState(true);
@@ -89,55 +90,44 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <div className="absolute">
-        <Header />
-        <img
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/dc1cf82d-97c9-409f-b7c8-6ac1718946d6/14a8fe85-b6f4-4c06-8eaf-eccf3276d557/IN-en-20230911-popsignuptwoweeks-perspective_alpha_website_large.jpg"
-          alt="background"
-        />
-      </div>
-      <form
-        className="w-3/12 bg-black p-12 absolute my-36 mx-auto right-0 left-0 text-white rounded-lg bg-opacity-80
-      "
-        onSubmit={(e) => e.preventDefault()}
-      >
-        <p className="font-bold text-2xl">
-          {isSIgnInForm ? "Sing In" : "Sign Up"}
-        </p>
-        {!isSIgnInForm && (
+    <div className="main">
+      <div className="login-form">
+        <form className="" onSubmit={(e) => e.preventDefault()}>
+          <p>{isSIgnInForm ? "Sing In" : "Sign Up"}</p>
+          {!isSIgnInForm && (
+            <input
+              ref={name}
+              type="text"
+              placeholder="Full Name"
+              className="p-4 my-4 w-full bg-gray-900"
+            />
+          )}
           <input
-            ref={name}
+            ref={email}
             type="text"
-            placeholder="Full Name"
+            placeholder="Email Address"
             className="p-4 my-4 w-full bg-gray-900"
           />
-        )}
-        <input
-          ref={email}
-          type="text"
-          placeholder="Email Address"
-          className="p-4 my-4 w-full bg-gray-900"
-        />
-        <input
-          ref={password}
-          type="password"
-          placeholder="Password"
-          className="p-4 my-4 w-full bg-gray-900"
-        />
-        <p className="text-red-700 font-bold text-lg py-2">{errorMessage}</p>
-        <button
-          className="p-4 my-6 bg-red-700 rounded-lg"
-          onClick={handleSubmitButton}
-        >
-          {isSIgnInForm ? "Sing In" : "Sing Up"}
-        </button>
-        <p onClick={toggleSignInForm} className="cursor-pointer">
-          {isSIgnInForm
-            ? "Already user?  Sign Up now"
-            : "New to Netflix? Sign In now"}
-        </p>
-      </form>
+          <input
+            ref={password}
+            type="password"
+            placeholder="Password"
+            className="p-4 my-4 w-full bg-gray-900"
+          />
+          <p className="error-message">{errorMessage}</p>
+          <button
+            className="p-4 my-6 bg-red-700 rounded-lg"
+            onClick={handleSubmitButton}
+          >
+            {isSIgnInForm ? "Sing In" : "Sing Up"}
+          </button>
+          <p onClick={toggleSignInForm} className="cursor-pointer">
+            {isSIgnInForm
+              ? "Already user?  Sign Up now"
+              : "New to Netflix? Sign In now"}
+          </p>
+        </form>
+      </div>
     </div>
   );
 };

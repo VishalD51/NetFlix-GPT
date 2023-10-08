@@ -1,0 +1,81 @@
+.browse-main{
+    padding-bottom: 100px;
+    background: black;
+    .main-container{
+        position: relative;
+  width: 100%;
+  height: 800px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .video-background{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    iframe {
+        width: 100%;
+        height: 800px;
+
+      }
+  }
+  .video-title{
+    color: white;
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    background: rgba(0,0,0,0.7);
+    height: 800px;
+    padding: 200px 80px;
+    h1{
+        font-size: 48px;
+        font-weight: 700;
+    }
+    .overview{
+        padding: 10px;
+        width: 30%;
+    }
+    .btn-container{
+        padding: 10px;
+        button{
+            padding: 10px 5px;
+            background: #5f5050;
+            margin-left: 20px;
+            min-width: 100px;
+            border-radius: 10px;
+        }
+    }
+  }
+    }
+    .secondary-container{
+        background-color: black;
+        .secondary-content{
+            margin-top: -200px;
+            z-index: 2;
+            position: relative;
+            .movie-container{
+                padding:0 25px;
+                .title{
+                    color:white;
+                    font-size: 32px;
+                    padding: 8px 0;
+                }
+                .movie-list{
+                    display: flex;
+                    overflow-x: scroll;
+                    .movies{
+                        display: flex;
+                    }
+                    .movie-card{
+                        width: 180px;
+                        padding-right: 16px;
+                    }
+                }
+                
+            }
+        }
+    
+    }
+   
+}

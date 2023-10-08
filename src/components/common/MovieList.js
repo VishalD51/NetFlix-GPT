@@ -2,10 +2,10 @@ import MovieCard from "./MovieCard";
 
 const MovieList = ({ title, movies }) => {
   return (
-    <div className="px-6 ">
-      <h1 className="text-3xl py-2 text-white">{title}</h1>
-      <div className="flex overflow-x-scroll">
-        <div className="flex">
+    <div className="movie-container">
+      <h1 className="title">{title}</h1>
+      <div className="movie-list">
+        <div className="movies">
           {movies?.map((movie) => (
             <MovieCard key={movie.id} posterPath={movie.poster_path} />
           ))}

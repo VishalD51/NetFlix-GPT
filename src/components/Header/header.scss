@@ -1,0 +1,38 @@
+.header-main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(179deg, black, gray);
+    padding: 0 20px;
+    .logo{
+        width: 150px;
+    }
+    .login-info{
+        display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    .multi-lang{
+        //m-4 bg-gray-900 text-white
+        margin: 16px;
+        color: white;
+        background: #312e2e;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    .profile-pic{
+        width: 40px;
+    border-radius: 50px;
+    }
+    button{
+        background: #312e2e;
+    padding: 5px 10px;
+    border-radius: 6px;
+    color: white;
+    }
+    .gpt-btn {
+        margin-right: 30px;
+    }
+    }
+    
+}
